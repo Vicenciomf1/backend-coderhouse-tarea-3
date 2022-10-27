@@ -8,15 +8,14 @@ const server = app.listen(PORT, () => {
 });
 server.on("error", error => console.log(`Encontramos el siguiente error en el servidor: ${error}`));
 
+const contenedor = new Contenedor('productos.txt');
 
 app.get('/productos', async (req, res) => {
-  const contenedor = new Contenedor('productos.txt');
   const productos = await contenedor.getAll();
   res.send(productos);
 });
 
 app.get('/productoRandom', async (req, res) => {
-  const contenedor = new Contenedor('productos.txt');
   const productos = await contenedor.getAll();
 
   const indiceAleatorio = Math.floor(Math.random() * productos.length);
